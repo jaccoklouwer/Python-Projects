@@ -11,6 +11,10 @@ from wtforms.validators import (
 from flask_login import current_user
 from flaskBlog.models import User
 
+'''
+Here are the routes defined for all user related forms.
+'''
+
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
