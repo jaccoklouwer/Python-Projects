@@ -1,7 +1,13 @@
 from flask import render_template, request, Blueprint
 from flaskBlog.models import Post
 
+'''
+Here are the routes defined for all general pages.
+These pages are not related to any model.
+'''
+
 main = Blueprint('main', __name__)
+
 
 @main.route('/')
 @main.route('/home')

@@ -4,9 +4,18 @@ from datetime import datetime
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
+'''
+    here are the database models defined.
+
+    the functions to get the token for the password change
+    and to print a mondel are also foound here
+'''
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,12 +35,14 @@ class User(db.Model, UserMixin):
         s = Serializer(current_app.config['SECRET_KEY'])
         try:
             user_id = s.loads(token)['user_id']
-        except:
+        except Exception:
             return None
         return User.query.get(user_id)
 
     def __repr__(self):
-        return f"User('{ self.username }', { self.email }', { self.image_file }')"
+        return f"""
+            User('{ self.username }', { self.email }', { self.image_file }')"""
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
